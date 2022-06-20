@@ -6,6 +6,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
@@ -27,7 +28,8 @@ public class AllureReportTest {
     }
 
     @Test
-    @Description("Test with usage Selenide Listener")
+    @DisplayName("issueNameTestViaListener")
+    @Description("Tests issue name in Allure2 repository page with usage Selenide Listener")
     void issueNameTestViaListener() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         open("https://github.com");
@@ -38,7 +40,8 @@ public class AllureReportTest {
     }
 
     @Test
-    @Description("Test with usage Lambda Steps")
+    @DisplayName("issueNameTestViaLambdaStep")
+    @Description("Tests issue name in Allure2 repository page with usage Lambda Steps")
     void issueNameTestViaLambdaStep() {
         step("Открываем главную страницу Github", () -> open("https://github.com"));
         step("В поле поиска вводим текст 'allure2' и нажимаем Enter", () -> {
@@ -53,7 +56,8 @@ public class AllureReportTest {
     }
 
     @Test
-    @Description("Test with usage Step Annotations")
+    @DisplayName("issueNameTestViaStepAnnotations")
+    @Description("Tests issue name in Allure2 repository page with usage Step Annotations")
     void issueNameTestViaStepAnnotations() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         GithubPageHandler pageHandler = new GithubPageHandler();
@@ -63,5 +67,4 @@ public class AllureReportTest {
         pageHandler.tabIssueClick();
         pageHandler.checkResult();
     }
-
 }
